@@ -488,9 +488,9 @@ public class SqlSessionFactoryBean
    *           if configuration is failed
    */
   protected SqlSessionFactory buildSqlSessionFactory() throws Exception {
-
+    //创建Configuration实例用于存储配置信息
     final Configuration targetConfiguration;
-
+    //创建XML配置解析器, 对配置文件进行解析
     XMLConfigBuilder xmlConfigBuilder = null;
     // Configuration的几种配置
     if (this.configuration != null) {
@@ -580,7 +580,7 @@ public class SqlSessionFactoryBean
     targetConfiguration.setEnvironment(new Environment(this.environment,
         this.transactionFactory == null ? new SpringManagedTransactionFactory() : this.transactionFactory,
         this.dataSource));
-
+    //如果mapper位置信息不为空, 则遍历解析
     if (this.mapperLocations != null) {
       if (this.mapperLocations.length == 0) {
         LOGGER.warn(() -> "Property 'mapperLocations' was specified but matching resources are not found.");
